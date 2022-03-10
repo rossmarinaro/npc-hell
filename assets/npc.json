@@ -1,0 +1,52 @@
+{"frames": [
+
+{
+	"filename": "fr00",
+	"frame": {"x":0,"y":0,"w":342,"h":569},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":342,"h":569},
+	"sourceSize": {"w":342,"h":569}
+},
+{
+	"filename": "fr01",
+	"frame": {"x":342,"y":0,"w":277,"h":550},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":277,"h":550},
+	"sourceSize": {"w":277,"h":550}
+},
+{
+	"filename": "fr02",
+	"frame": {"x":619,"y":0,"w":244,"h":559},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":244,"h":559},
+	"sourceSize": {"w":244,"h":559}
+},
+{
+	"filename": "fr03",
+	"frame": {"x":863,"y":0,"w":277,"h":579},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":277,"h":579},
+	"sourceSize": {"w":277,"h":579}
+},
+{
+	"filename": "fr04",
+	"frame": {"x":1140,"y":0,"w":305,"h":540},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":305,"h":540},
+	"sourceSize": {"w":305,"h":540}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "npc.png",
+	"format": "RGBA8888",
+	"size": {"w":1445,"h":579},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:0826074e4ce32179a48148780b7ca7c6:6746091a95d034654d2f0af04ad8c076:3eb7254a4fdb513d6e585eb28f120903$"
+}
+}
