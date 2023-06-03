@@ -1,6 +1,6 @@
 # NPC HELL
 
-** built with phaserjs, webpack, enable3d, threejs, nodejs**
+** built with phaserjs and webpack**
 
 ![image info](./src/assets/wojak_normal.png) 
 
