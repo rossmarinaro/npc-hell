@@ -4,13 +4,13 @@ export default class GameOver extends Phaser.Scene {
     constructor(){
         super({ key:'GameOver' });
     }
-    create(score)
+    create(data)
     {
 
         this.add.sprite(this.scale.width / 2, 200, 'angry_wojak').setScale(0.5);
 
         this.add.text(this.scale.width / 2 - 70, 370, 'SCORE: ', {font: "30px Digitizer", fill: "#ffffff"}).setStroke("#000000", 4);
-        this.add.text(this.scale.width / 2 + 50, 370, score, {font: "30px Digitizer", fill: "#ffffff"}).setStroke("#000000", 4);
+        this.add.text(this.scale.width / 2 + 50, 370, data.score, {font: "30px Digitizer", fill: "#ffffff"}).setStroke("#000000", 4);
 
         this.add.text(this.scale.width / 2 - 170, 420, "GAME OVER", {font: "60px Digitizer", fill: "#ffff00"}).setStroke("#ff0000", 4);
         this.add.text(this.scale.width / 2 - 130, 490, "TRY AGAIN?", {font: "50px Digitizer", fill: "#ffffff"}).setStroke("#000000", 4);

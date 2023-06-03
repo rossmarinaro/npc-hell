@@ -129,7 +129,7 @@ export default class Main extends Phaser.Scene {
 
                 if (progress > .9)
                 {
-                    this.scene.run('GameOver', this.score);
+                    this.scene.run('GameOver', {score: this.score});
                     this.scene.stop('Main');
                 }
 
