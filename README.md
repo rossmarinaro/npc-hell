@@ -2,7 +2,7 @@
 
 ** built with phaserjs, webpack, enable3d, threejs, nodejs**
 
-![image info](./assets/wojak_normal.png) 
+![image info](./src/assets/wojak_normal.png) 
 
 
 # Phaser 3 Webpack Project Template
