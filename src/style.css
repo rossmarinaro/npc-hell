@@ -1,0 +1,30 @@
+
+
+    /*css*/
+
+  @font-face {
+      font-family: "bangers";
+      src: url("./assets/fonts/bangers-regular-webfont.woff") format("woff")
+  }
+  @font-face {
+      font-family: "Digitizer";
+      src: url("./assets/fonts/digitizer.woff") format("woff");
+  }
+  html, body{
+    background: #000000;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh !important;
+    overflow: hidden;
+
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #000000;
+    margin: 0;
+    padding: 0;
+    overscroll-behavior: none; 
+
+
+  }

@@ -1,0 +1,22 @@
+{  
+    "image":
+    [
+        { "ground": "assets/ground.png" },
+        { "wojak_normal": "assets/wojak_normal.png" },
+        { "angry_wojak": "assets/angry_wojak.png" },
+        { "yes": "assets/yes.png" },
+        { "no": "assets/no.png" },
+        { "wojak_normal": "assets/wojak_normal.png" }
+    ],
+    "audio": [
+        
+    ],
+    "atlas": 
+    [
+        { "wojak": [ "assets/wojak.png", "assets/wojak.json" ] },
+        { "npc": [ "assets/npc.png", "assets/npc.json" ] }
+    ],
+    "tilemapTiledJSON": [
+        { "map": "assets/map.json" }
+    ]
+}
