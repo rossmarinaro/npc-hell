@@ -28,12 +28,12 @@ export default class Controller extends Phaser.Scene {
             this.cameras.main.centerOn(innerWidth / 2, innerHeight / 1.2).setZoom(0.5);
             
             this.input.addPointer(1);
-            this.joystickBase1 = this.add.circle(-50, 250, 80, 0x000000).setAlpha(0.5);
-            this.joystickThumb1 = this.add.circle(-50, 250, 50, 0xcccccc).setAlpha(0.5);
+            this.joystickBase1 = this.add.circle(50, 250, 80, 0x000000).setAlpha(0.5);
+            this.joystickThumb1 = this.add.circle(50, 250, 50, 0xcccccc).setAlpha(0.5);
             this.joystick1 = this.plugins.get('rexvirtualjoystickplugin').add(this, {
                 forceX: 0,
                 forceY: 0,
-                x: 200,
+                x: -250,
                 y: 200,
                 radius: 60,
                 base: this.joystickBase1,
