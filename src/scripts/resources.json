@@ -9,7 +9,10 @@
         { "wojak_normal": "assets/wojak_normal.png" }
     ],
     "audio": [
-        
+        { "swipe": "assets/swipe.ogg" },
+        { "fire": "assets/fire.ogg" },
+        { "error": "assets/error.ogg" },
+        { "ring": "assets/ring.ogg" }
     ],
     "atlas": 
     [

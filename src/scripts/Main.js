@@ -1,4 +1,5 @@
 import mobileAndTabletCheck from './device.js'
+import { AudioManager } from './Audio.js'
 
 export default class Main extends Phaser.Scene {
 
@@ -59,7 +60,7 @@ export default class Main extends Phaser.Scene {
 
         //attack hitbox
 
-        this.hitbox = this.add.zone(-Infinity, -Infinity).setSize(50, 50); 
+        this.hitbox = this.add.zone(-Infinity, -Infinity).setSize(80, 80); 
 
         this.physics.world.enable(this.hitbox); 
         this.hitbox.body.moves = false;
@@ -73,6 +74,7 @@ export default class Main extends Phaser.Scene {
             if (b.active)
             {
                 this.scene.get('UI').score++;
+                AudioManager.play('fire', 1.8, false, this, 0);
                 txt = this.add.text(b.x, b.y - 220, 'OFFENDED!', {fontSize: '15px', fontFamily: 'Digitizer'}).setColor('#000000');
             }
 
@@ -126,7 +128,9 @@ export default class Main extends Phaser.Scene {
                 
             gameOver.active = false;
 
-            this.cameras.main.fade(500, 255, 0, 0, false, (camera, progress) => { 
+            AudioManager.play('error', 5, false, this, 0);
+
+            this.cameras.main.fade(500, 0, 0, 255, false, (camera, progress) => { 
 
                 if (progress > .9)
                 {
@@ -212,13 +216,9 @@ export default class Main extends Phaser.Scene {
         {
 
             if (this.controller.right === true)
-                this.wojak.play('wojak_walk', true).setVelocityX(120).setFlipX(false);
+                this.wojak.play('wojak_walk', true).setVelocityX(420).setFlipX(false);
             else if (this.controller.left === true)
-                this.wojak.play('wojak_walk', true).setVelocityX(-120).setFlipX(true);
-            else if (this.controller.up === true)
-                this.wojak.play('wojak_walk', true).setVelocityY(-120);
-            else if (this.controller.down === true)
-                this.wojak.play('wojak_walk', true).setVelocityY(120);
+                this.wojak.play('wojak_walk', true).setVelocityX(-420).setFlipX(true);
             else 
             {
                 if (this.wojak.anims.isPlaying && this.wojak.anims.currentAnim.key === 'wojak_walk')
@@ -234,10 +234,14 @@ export default class Main extends Phaser.Scene {
 
         else if (this.controller.attack === true)   
         {
+
             this.controller.attack = false;
+
             this.wojak.play(Math.floor(Math.random() * 10 + 1) > 5 ? 'wojak_punch1' : 'wojak_punch2', true);
+
             this.wojak.on(Phaser.Animations.Events.ANIMATION_COMPLETE, ()=> this.wojak.anims.stop().setTexture('wojak', 'fr00').setVelocity(0, 0));
-            this.hitbox.setPosition(this.wojak.flipX === true ? this.wojak.x - 180 : this.wojak.x + 150, this.wojak.y - 50);
+            
+            this.hitbox.setPosition(this.wojak.flipX === true ? this.wojak.x - 180 : this.wojak.x + 150, this.wojak.y - 80);
         }
 
         else 

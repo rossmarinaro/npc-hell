@@ -3,6 +3,8 @@
 `use strict`;
 
 import mobileAndTabletCheck from './device.js'
+import { AudioManager } from './Audio.js';
+
 
 export default class Controller extends Phaser.Scene {
 
@@ -38,9 +40,14 @@ export default class Controller extends Phaser.Scene {
                 thumb: this.joystickThumb1
             });
 
-            this.attackButton = this.add.circle(850, 300, 50, 0x000000).setAlpha(0.5)
-                .setInteractive()
-                .on('pointerdown', ()=> this.attack = true)
+            this.attackButton = this.add.circle(850, 300, 50, 0x000000).setAlpha(0.5).setInteractive()
+                .on('pointerdown', ()=> {
+
+                    if (!this.attack)
+                        AudioManager.play('swipe', 0.3, false, this, 0);
+
+                    this.attack = true;
+                })
 
                 this.events.on('update', ()=> {
 
@@ -68,7 +75,18 @@ export default class Controller extends Phaser.Scene {
             .on('keyup-RIGHT', ()=> this.right = false)
             .on('keydown-LEFT', ()=> this.left = true)
             .on('keyup-LEFT', ()=> this.left = false)
-            .on('keydown-SPACE', ()=> this.attack = true);
+            .on('keydown-SPACE', ()=> {
+                
+                if (this.attacking)
+                    return;
+
+                this.attacking = true;
+
+                this.attack = true;
+                AudioManager.play('swipe', 0.3, false, this, 0);
+
+            })
+            .on('keyup-SPACE', ()=> this.attacking = false);
         }
     }
 

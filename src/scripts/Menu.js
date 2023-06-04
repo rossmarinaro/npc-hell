@@ -1,4 +1,5 @@
 import mobileAndTabletCheck from './device.js'
+import { AudioManager } from './Audio.js'
 
 export default class Menu extends Phaser.Scene {
 
@@ -17,8 +18,7 @@ export default class Menu extends Phaser.Scene {
         .on('pointerout', ()=> startTxt.clearTint())
         .on('pointerdown', ()=>{
 
-            this.sound.stopAll();
-            this.sound.removeAll();
+            AudioManager.play('ring', 1, false, this, 0);
 
             this.scene.start('Main');
             this.scene.stop('Menu');

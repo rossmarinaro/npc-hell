@@ -1,4 +1,5 @@
 import mobileAndTabletCheck from './device.js'
+import { AudioManager } from './Audio.js'
 
 export default class GameOver extends Phaser.Scene {
 
@@ -23,8 +24,7 @@ export default class GameOver extends Phaser.Scene {
             .on('pointerout', ()=> yes.clearTint())
             .on('pointerdown', ()=>{
 
-                this.sound.stopAll();
-                this.sound.removeAll();
+                AudioManager.play('ring', 1, false, this, 0);
 
                 this.scene.start('Main');
                 this.scene.stop('GameOver');
@@ -35,8 +35,7 @@ export default class GameOver extends Phaser.Scene {
             .on('pointerout', ()=> no.clearTint())
             .on('pointerdown', ()=>{
                 
-                this.sound.stopAll(); 
-                this.sound.removeAll();
+                AudioManager.play('ring', 1, false, this, 0);
 
                 this.scene.start('Menu');
                 this.scene.stop('GameOver');
