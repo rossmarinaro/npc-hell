@@ -40,7 +40,7 @@ export default class Controller extends Phaser.Scene {
                 thumb: this.joystickThumb1
             });
 
-            this.attackButton = this.add.circle(innerWidth - 50, 300, 50, 0x000000).setAlpha(0.5).setInteractive()
+            this.attackButton = this.add.circle(innerWidth + 200, 300, 50, 0x000000).setAlpha(0.5).setInteractive()
                 .on('pointerdown', ()=> {
 
                     if (!this.attack)
