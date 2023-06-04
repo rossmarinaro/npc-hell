@@ -1,3 +1,4 @@
+import mobileAndTabletCheck from './device.js'
 
 export default class Menu extends Phaser.Scene {
 
@@ -24,5 +25,8 @@ export default class Menu extends Phaser.Scene {
         });
 
         this.cameras.main.setBackgroundColor(0x444444);
+        
+        if (mobileAndTabletCheck())
+            this.cameras.main.centerOn(innerWidth / 2, innerHeight / 1.2).setZoom(0.5);
     }
 }

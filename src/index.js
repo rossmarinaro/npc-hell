@@ -6,6 +6,7 @@ import Menu from './scripts/Menu.js';
 import Main from './scripts/Main.js';
 import GameOver from './scripts/GameOver.js';
 import Controller from './scripts/Controller.js';
+import UI from './scripts/UI';
 
 /****** MOBILE FRIENDLY*/
 
@@ -23,7 +24,7 @@ const config = {
     dom: {
         createContainer: true
   },
-  scene: [Boot, Preload, Menu, Main, Controller, GameOver],
+  scene: [Boot, Preload, Menu, Main, UI, Controller, GameOver],
   physics: {
     default: 'arcade',
     arcade: {

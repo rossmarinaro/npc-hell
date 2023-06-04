@@ -1,4 +1,4 @@
-
+import mobileAndTabletCheck from './device.js'
 
 export default class Main extends Phaser.Scene {
 
@@ -55,8 +55,6 @@ export default class Main extends Phaser.Scene {
 
         //----------------------
 
-        this.score = 0;
-
         this.wojak = this.physics.add.sprite(50, 500, 'wojak', 'fr00').setScale(0.7).setDepth(Infinity); 
 
         //attack hitbox
@@ -74,7 +72,7 @@ export default class Main extends Phaser.Scene {
 
             if (b.active)
             {
-                this.score++;
+                this.scene.get('UI').score++;
                 txt = this.add.text(b.x, b.y - 220, 'OFFENDED!', {fontSize: '15px', fontFamily: 'Digitizer'}).setColor('#000000');
             }
 
@@ -96,15 +94,18 @@ export default class Main extends Phaser.Scene {
 
         //procedural ground
 
-        this.createGround(this.scale.width + 150, 820);
+        this.createGround(innerWidth * 2, 820);
 
         this.cameras.main.setBackgroundColor(0x00fbff).startFollow(this.wojak);
+        
+        if (mobileAndTabletCheck())
+            this.cameras.main.centerOn(innerWidth / 2, innerHeight / 1.2).setZoom(0.5);
 
         //spawn NPCs
 
         const spawnNPC = ()=> {
 
-            let npc = this.physics.add.sprite(Math.random() * 1 > 0.5 ? this.wojak.x + 800 : this.wojak.x - 800, 500, 'npc')
+            let npc = this.physics.add.sprite(Math.random() * 1 > 0.5 ? this.wojak.x + 800 : this.wojak.x - 800, 510, 'npc')
                 .play('npc_walk', true)
                 .setScale(0.7)
                 .setDepth(Infinity);
@@ -129,7 +130,8 @@ export default class Main extends Phaser.Scene {
 
                 if (progress > .9)
                 {
-                    this.scene.run('GameOver', {score: this.score});
+                    this.scene.run('GameOver', { score: this.scene.get('UI').score });
+                    this.scene.stop('UI');
                     this.scene.stop('Main');
                 }
 
@@ -138,10 +140,8 @@ export default class Main extends Phaser.Scene {
         });
 
 
-        this.add.text(50, 20, 'Score: ', {fontSize: '45px', fontFamily: 'Digitizer'}).setColor('#444444').setStroke('#000000', 4).setShadow(2, 2, '#000000', 1, false).setScrollFactor(0);
-        this.scoreText = this.add.text(220, 20, this.score, {fontSize: '45px', fontFamily: 'Digitizer'}).setColor('#717171').setStroke('#000000', 4).setShadow(2, 2, '#000000', 1, false).setScrollFactor(0);
-
         this.scene.launch('Controller');
+        this.scene.launch('UI');
         this.controller = this.scene.get('Controller');
 
 
@@ -178,10 +178,6 @@ export default class Main extends Phaser.Scene {
 
     update()
     {
-
-        //update score
-
-        this.scoreText.setText(this.score);
  
         // recycling platforms
 
@@ -207,10 +203,7 @@ export default class Main extends Phaser.Scene {
         // adding new platforms
 
         if(minDistance > this.nextPlatformDistance)
-        {
-            let nextPlatformWidth = Phaser.Math.Between(0, 1200);
-            this.createGround(nextPlatformWidth + 100, 820);
-        }
+            this.createGround(innerWidth * 2, 820);
     
         //wojak actions
 

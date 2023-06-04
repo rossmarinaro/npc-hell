@@ -1,3 +1,4 @@
+import mobileAndTabletCheck from './device.js'
 
 export default class GameOver extends Phaser.Scene {
 
@@ -44,5 +45,8 @@ export default class GameOver extends Phaser.Scene {
 
 
         this.cameras.main.setBackgroundColor(0xccc);
+
+        if (mobileAndTabletCheck())
+            this.cameras.main.centerOn(innerWidth / 2, innerHeight / 1.2).setZoom(0.5);
     }
 }

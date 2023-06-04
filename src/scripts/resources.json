@@ -15,8 +15,5 @@
     [
         { "wojak": [ "assets/wojak.png", "assets/wojak.json" ] },
         { "npc": [ "assets/npc.png", "assets/npc.json" ] }
-    ],
-    "tilemapTiledJSON": [
-        { "map": "assets/map.json" }
     ]
 }
