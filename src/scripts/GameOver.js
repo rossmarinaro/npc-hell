@@ -47,5 +47,8 @@ export default class GameOver extends Phaser.Scene {
 
         if (mobileAndTabletCheck())
             this.cameras.main.centerOn(innerWidth / 2, innerHeight / 1.2).setZoom(0.5);
+
+            
+        this.scale.on('resize', () => this.scene.restart(data));
     }
 }

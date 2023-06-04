@@ -21,12 +21,9 @@ export class Boot extends Phaser.Scene {
             this.add.text(0, 0, '', { font: "1px Digitizer"}).setAlpha(0);
             this.add.text(0, 0, '', { font: "1px Bangers"}).setAlpha(0);
     
-            this.time.delayedCall(500, ()=> {
+            this.time.delayedCall(500, ()=>  this.scene.run('Preload'));
 
-                this.scene.run('Preload');
-                this.scene.stop('Boot');
-                
-            });
+            this.scale.on('resize', () => this.scene.restart());
   
         }
     }

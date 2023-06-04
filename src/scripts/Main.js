@@ -50,6 +50,8 @@ export default class Main extends Phaser.Scene {
             
         });
 
+        this.alive = true;
+
         //npcs
 
         this.NPCs = this.physics.add.group();
@@ -127,6 +129,10 @@ export default class Main extends Phaser.Scene {
                 return;
                 
             gameOver.active = false;
+            
+            this.alive = false;
+
+            this.wojak.anims.stop().setTexture('npc', 'fr02');
 
             AudioManager.play('error', 5, false, this, 0);
 
@@ -212,40 +218,43 @@ export default class Main extends Phaser.Scene {
     
         //wojak actions
 
-        if (this.controller.attack === false)
+        if (this.alive)
         {
-
-            if (this.controller.right === true)
-                this.wojak.play('wojak_walk', true).setVelocityX(420).setFlipX(false);
-            else if (this.controller.left === true)
-                this.wojak.play('wojak_walk', true).setVelocityX(-420).setFlipX(true);
-            else 
+            if (this.controller.attack === false)
             {
-                if (this.wojak.anims.isPlaying && this.wojak.anims.currentAnim.key === 'wojak_walk')
-                    this.wojak.anims.stop().setTexture('wojak', 'fr00');
-                else
-                    this.wojak.on(Phaser.Animations.Events.ANIMATION_COMPLETE, ()=> this.wojak.anims.stop().setTexture('wojak', 'fr00'));
-                
-                this.wojak.setVelocity(0, 0);
+    
+                if (this.controller.right === true)
+                    this.wojak.play('wojak_walk', true).setVelocityX(420).setFlipX(false);
+                else if (this.controller.left === true)
+                    this.wojak.play('wojak_walk', true).setVelocityX(-420).setFlipX(true);
+                else 
+                {
+                    if (this.wojak.anims.isPlaying && this.wojak.anims.currentAnim.key === 'wojak_walk')
+                        this.wojak.anims.stop().setTexture('wojak', 'fr00');
+                    else
+                        this.wojak.on(Phaser.Animations.Events.ANIMATION_COMPLETE, ()=> this.wojak.anims.stop().setTexture('wojak', 'fr00'));
+                    
+                    this.wojak.setVelocity(0, 0);
+                }
+    
+                this.hitbox.setPosition(-Infinity, -Infinity);
             }
-
-            this.hitbox.setPosition(-Infinity, -Infinity);
+    
+            else if (this.controller.attack === true)   
+            {
+    
+                this.controller.attack = false;
+    
+                this.wojak.play(Math.floor(Math.random() * 10 + 1) > 5 ? 'wojak_punch1' : 'wojak_punch2', true);
+    
+                this.wojak.on(Phaser.Animations.Events.ANIMATION_COMPLETE, ()=> this.wojak.anims.stop().setTexture('wojak', 'fr00').setVelocity(0, 0));
+                
+                this.hitbox.setPosition(this.wojak.flipX === true ? this.wojak.x - 180 : this.wojak.x + 150, this.wojak.y - 80);
+            }
+    
+            else 
+                this.wojak.anims.stop().setTexture('wojak', 'fr00').setVelocity(0, 0);
         }
-
-        else if (this.controller.attack === true)   
-        {
-
-            this.controller.attack = false;
-
-            this.wojak.play(Math.floor(Math.random() * 10 + 1) > 5 ? 'wojak_punch1' : 'wojak_punch2', true);
-
-            this.wojak.on(Phaser.Animations.Events.ANIMATION_COMPLETE, ()=> this.wojak.anims.stop().setTexture('wojak', 'fr00').setVelocity(0, 0));
-            
-            this.hitbox.setPosition(this.wojak.flipX === true ? this.wojak.x - 180 : this.wojak.x + 150, this.wojak.y - 80);
-        }
-
-        else 
-            this.wojak.anims.stop().setTexture('wojak', 'fr00').setVelocity(0, 0);
 
         //npc flip
 
